@@ -21,9 +21,6 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 const REPO_BASE = 'https://vianidev.github.io/plantillas-web/Paginas-Web/';
 
 const projects = [
-  { category:'servicios', label:'Servicios y cursos', status:'done', title:'Landing para curso online', desc:'Propuesta, beneficios, testimonios y botón de inscripción. HTML, CSS y JS puro.', link:'#' },
-  { category:'servicios', label:'Servicios y cursos', status:'done', title:'Presentación de negocio local', desc:'Sitio de una página para un emprendimiento, con contacto directo por WhatsApp.', link:'#' },
-
   { category:'ropa', label:'Ropa', status:'done', title:'Ropa — plantilla 01', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-ropa-01/' },
   { category:'ropa', label:'Ropa', status:'done', title:'Ropa — plantilla 02', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-ropa-02/' },
   { category:'ropa', label:'Ropa', status:'done', title:'Ropa — plantilla 03', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-ropa-03/' },
