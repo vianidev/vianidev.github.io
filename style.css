@@ -210,13 +210,15 @@
   .project-body h3{ font-size:1.08rem; margin-bottom:8px; }
   .project-body p{ color: var(--dim); font-size:0.88rem; margin-bottom:14px; }
   .project-link{
-    font-family:'Space Mono', monospace; font-size:0.78rem; color: var(--gold);
-    display:inline-flex; align-items:center; gap:6px;
-    border: 1px solid var(--border); border-radius: 100px; padding: 8px 16px;
-    transition: all .2s ease;
-  }
-  .project-link:hover{ background: var(--gold); border-color: var(--gold); color:#1a1410; }
-  .project-link svg{ width:13px; height:13px; flex-shrink:0; }
+  font-family:'Space Mono', monospace; font-size:0.82rem; color:#1a1410;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  background: var(--gold); border-radius: 10px; padding: 13px 20px;
+  font-weight:700; width:100%; margin-top: 4px;
+  transition: background .2s ease, transform .2s ease;
+}
+  .project-link svg{ width:14px; height:14px; transition: transform .25s ease; }
+.project-link:hover{ background: var(--gold-deep); transform: translateY(-2px); }
+.project-link:hover svg{ transform: translateX(4px); }
   .pending-label:hover{ background:none; border-color: var(--border); color: var(--faint) !important; }
   @media (max-width:780px){ .projects-grid{ grid-template-columns:1fr; } }
   .projects-note{ margin-top:28px; font-size:0.88rem; color: var(--faint); border-left:2px solid var(--border); padding-left:16px; }
@@ -225,7 +227,11 @@
   .project-card.pending{ opacity: 0.6; }
   .project-card.pending .project-thumb{ background: repeating-linear-gradient(135deg, var(--surface-2), var(--surface-2) 10px, var(--bg-2) 10px, var(--bg-2) 20px); }
   .project-card.pending .mini-browser{ opacity: 0.5; }
-  .pending-label{ color: var(--faint) !important; cursor: default; }
+  .pending-label{
+  background: var(--surface-2) !important; color: var(--faint) !important;
+  cursor:default; border:1px dashed var(--border);
+}
+.pending-label:hover{ background: var(--surface-2) !important; transform:none; }
 
   /* ---------- PROCESO timeline ---------- */
   .timeline{ position:relative; padding-left: 34px; }
