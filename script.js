@@ -38,10 +38,6 @@
     { category:'zapatillas', label:'Zapatillas', status:'done', title:'Zapatillas — plantilla 03', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-zapatillas-03/' },
     { category:'zapatillas', label:'Zapatillas', status:'done', title:'Zapatillas — plantilla 04', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-zapatillas-04/' },
 
-    { category:'joyas', label:'Joyas', status:'pending', title:'Joyas — plantilla 1', desc:'Catálogo elegante con fotos en detalle y fondo minimalista.' },
-    { category:'joyas', label:'Joyas', status:'pending', title:'Joyas — plantilla 2', desc:'Landing para colección cápsula, con foco en la historia de la marca.' },
-    { category:'joyas', label:'Joyas', status:'pending', title:'Joyas — plantilla 3', desc:'Página para regalos personalizados, con formulario de pedido a medida.' },
-
     { category:'accesorios', label:'Accesorios', status:'done', title:'Accesorios — plantilla 01', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-accesorios-01/' },
     { category:'accesorios', label:'Accesorios', status:'done', title:'Accesorios — plantilla 02', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-accesorios-02/' },
     { category:'accesorios', label:'Accesorios', status:'done', title:'Accesorios — plantilla 03', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-accesorios-03/' },
