@@ -57,7 +57,7 @@
     const pendingClass = p.status === 'pending' ? ' pending' : '';
     const tagWord = p.status === 'done' ? 'Demo' : 'Plantilla en camino';
     const linkHtml = p.status === 'done'
-      ? `<a href="${p.link}" class="project-link">Ver en GitHub →</a>`
+      ? `<a href="${p.link}" class="project-link" target="_blank" rel="noopener noreferrer">Ver página <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg></a>`
       : `<span class="project-link pending-label">Próximamente</span>`;
     return `
       <div class="project-card${pendingClass}" data-cat="${p.category}">
