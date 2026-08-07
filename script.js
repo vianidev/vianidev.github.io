@@ -119,10 +119,10 @@ function sweepTransition(x, y, color, applyFn){
   sweepEl.style.top = y + 'px';
   sweepEl.style.background = color;
   sweepEl.classList.remove('sweep-anim');
-  void sweepEl.offsetWidth;
+  void sweepEl.offsetWidth; // reinicia la animación
   sweepEl.classList.add('sweep-anim');
   let applied = false;
-  const mid = 0.52 * 950;
+  const mid = 0.52 * 950; // debe coincidir con el 52% del keyframe (950ms de duración)
   setTimeout(() => { if (!applied) { applied = true; applyFn(); } }, mid);
   sweepEl.addEventListener('animationend', function handler(){
     sweepEl.classList.remove('sweep-anim');
