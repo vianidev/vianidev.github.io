@@ -234,6 +234,36 @@ if (floatingCta) {
   });
 }
 
+// ---------- MENU MOBILE (hamburguesa) ----------
+(function initNavMobile(){
+  const burger = document.getElementById('navBurger');
+  const menu = document.getElementById('navMobile');
+  const backdrop = document.getElementById('navMobileBackdrop');
+  if (!burger || !menu || !backdrop) return;
+
+  function closeMenu(){
+    burger.classList.remove('active');
+    menu.classList.remove('open');
+    backdrop.classList.remove('show');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  function openMenu(){
+    burger.classList.add('active');
+    menu.classList.add('open');
+    backdrop.classList.add('show');
+    burger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  burger.addEventListener('click', () => {
+    burger.classList.contains('active') ? closeMenu() : openMenu();
+  });
+  backdrop.addEventListener('click', closeMenu);
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 820) closeMenu(); });
+})();
+
 // ---------- AGENDA DE CONTENIDO: filtro + paginado ----------
 (function initAgenda(){
   const grid = document.getElementById('agendaGrid');

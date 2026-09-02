@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Página no encontrada · Joaquín Viani</title>
+<meta name="description" content="Esta página no existe. Volvé al inicio del sitio de Joaquín Viani, desarrollador web.">
+<meta name="robots" content="noindex">
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#17110d">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20260902-9">
+<style>
+  .error-page{
+    min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:40px 28px;
+  }
+  .error-code{
+    font-family:'Space Mono', monospace; font-size:0.95rem; letter-spacing:0.14em;
+    color: var(--gold); background: var(--chip-bg); border:1px solid var(--border);
+    padding:8px 18px; border-radius:100px; margin-bottom:28px;
+  }
+  .error-page h1{ font-size: clamp(2rem, 5vw, 3rem); max-width:18ch; margin-bottom:18px; }
+  .error-page p{ color: var(--dim); max-width:48ch; margin-bottom:36px; font-size:1.05rem; }
+  .error-actions{ display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-bottom:56px; }
+  .error-links{
+    display:flex; gap:22px; flex-wrap:wrap; justify-content:center;
+    font-family:'Space Mono', monospace; font-size:0.82rem; color: var(--faint);
+  }
+  .error-links a:hover{ color: var(--gold); }
+  .error-logo{ position:absolute; top:32px; left:32px; }
+  @media (max-width:600px){ .error-logo{ position:static; margin-bottom:44px; } }
+</style>
+</head>
+<body>
+<div class="error-page">
+  <div class="error-logo logo">Viani<em>/</em>dev</div>
+
+  <span class="error-code">ERROR 404</span>
+  <h1>Esta página se perdió en el camino.</h1>
+  <p>El enlace que seguiste no existe o cambió de lugar. Volvé al inicio para ver los proyectos, servicios y la agenda de contenido.</p>
+
+  <div class="error-actions">
+    <a href="/" class="btn btn-primary">Volver al inicio</a>
+    <a href="/#contacto" class="btn btn-ghost">Contactame</a>
+  </div>
+
+  <div class="error-links">
+    <a href="/#servicios">Servicios</a>
+    <a href="/#proyectos">Proyectos</a>
+    <a href="/#paquetes">Paquetes</a>
+    <a href="/#faq">FAQ</a>
+    <a href="https://instagram.com/viani.dev" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</div>
+
+</body>
+</html>

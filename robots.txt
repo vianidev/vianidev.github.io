@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vianidev.github.io/sitemap.xml
