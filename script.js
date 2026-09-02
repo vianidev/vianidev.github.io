@@ -77,6 +77,7 @@ function renderProjectCard(p){
 function renderProjects(){
   const grid = document.getElementById('projectsGrid');
   const filterRow = document.getElementById('filterRow');
+  const moreBtn = document.getElementById('projectsMore');
   const seen = [];
   const labels = { all: 'Todos' };
   projects.forEach(p => { if (!seen.includes(p.category)) { seen.push(p.category); labels[p.category] = p.label; } });
@@ -87,17 +88,36 @@ function renderProjects(){
   ).join('');
 
   grid.innerHTML = projects.map(renderProjectCard).join('');
+  const cards = Array.from(grid.querySelectorAll('.project-card'));
+  if (!moreBtn) return;
+
+  const PAGE_SIZE = 6;
+  let visibleCount = PAGE_SIZE;
+  let activeFilter = 'all';
+
+  function applyView(){
+    const matching = cards.filter(c => activeFilter === 'all' || c.dataset.cat === activeFilter);
+    cards.forEach(c => c.classList.add('hide'));
+    matching.slice(0, visibleCount).forEach(c => c.classList.remove('hide'));
+    moreBtn.style.display = matching.length > visibleCount ? 'inline-flex' : 'none';
+  }
 
   filterRow.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       filterRow.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const f = btn.dataset.filter;
-      grid.querySelectorAll('.project-card').forEach(card => {
-        card.classList.toggle('hide', f !== 'all' && card.dataset.cat !== f);
-      });
+      activeFilter = btn.dataset.filter;
+      visibleCount = PAGE_SIZE;
+      applyView();
     });
   });
+
+  moreBtn.addEventListener('click', () => {
+    visibleCount += PAGE_SIZE;
+    applyView();
+  });
+
+  applyView();
 }
 renderProjects();
 
@@ -151,27 +171,39 @@ function setThemeAttr(theme){
 }
 
 // ---------- PALETAS DE COLOR ----------
+// El cambio de paleta ya no usa el barrido de pantalla completa: --gold y --gold-deep
+// están registradas como @property en el CSS, así que el propio navegador anima el
+// cruce de color de forma suave. Acá solo dejamos un pulso chiquito en el punto
+// donde se hizo clic, a modo de confirmación visual, sin tapar la pantalla.
 root.setAttribute('data-palette', 'amber');
 const paletteDots = document.querySelectorAll('.palette-dot');
 paletteDots.forEach(dot => {
-  dot.addEventListener('click', (e) => {
+  dot.addEventListener('click', () => {
     if (dot.classList.contains('active')) return;
-    const rect = dot.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
     const palette = dot.dataset.palette;
-    const flashColor = dot.dataset.color;
-    sweepTransition(x, y, flashColor, () => {
-      root.setAttribute('data-palette', palette);
-      paletteDots.forEach(d => d.classList.toggle('active', d === dot));
-    });
+    root.setAttribute('data-palette', palette);
+    paletteDots.forEach(d => d.classList.toggle('active', d === dot));
+
+    if (!reduceMotion) {
+      const ripple = document.createElement('span');
+      ripple.className = 'palette-ripple';
+      ripple.style.background = dot.dataset.color;
+      dot.appendChild(ripple);
+      ripple.addEventListener('animationend', () => ripple.remove());
+    }
   });
 });
 
 // ---------- SELECTOR DE COLOR EN VIVO ----------
+// Mientras se arrastra el selector nativo, se apaga la transición de color un instante
+// para que el cambio siga al cursor sin retraso; al soltar, vuelve a animarse suave.
+let liveColorTimeout;
 document.getElementById('liveColorPicker').addEventListener('input', (e) => {
+  root.classList.add('no-color-transition');
   root.style.setProperty('--gold', e.target.value);
   root.style.setProperty('--gold-deep', e.target.value);
+  clearTimeout(liveColorTimeout);
+  liveColorTimeout = setTimeout(() => root.classList.remove('no-color-transition'), 200);
 });
 
 // ---------- VOLVER ARRIBA ----------
@@ -252,58 +284,63 @@ demoTabs.forEach(tab => {
   });
 });
 
-// ---------- PARTÍCULAS CÁLIDAS EN EL HERO ----------
-const canvas = document.getElementById('heroCanvas');
-if (canvas && !reduceMotion) {
-  const ctx = canvas.getContext('2d');
-  const heroSection = canvas.closest('.hero');
-  let particles = [];
+// ---------- FONDO AMBIENTE (motas cálidas, sutiles, en toda la página) ----------
+// Antes esto solo vivía en el hero (canvas absoluto dentro de esa sección) y con
+// muchas partículas bien visibles. Ahora es un canvas fijo detrás de todo el sitio:
+// se ve durante todo el scroll pero con muy poca densidad y opacidad baja, para
+// que acompañe sin robarle protagonismo al contenido. Además toma el color de la
+// paleta activa, así combina con ámbar, verde, violeta, celeste o el color elegido a mano.
+const bgCanvas = document.getElementById('bgCanvas');
+if (bgCanvas && !reduceMotion) {
+  const bctx = bgCanvas.getContext('2d');
+  let motes = [];
 
-  function resize(){
-    canvas.width = heroSection.clientWidth * devicePixelRatio;
-    canvas.height = heroSection.clientHeight * devicePixelRatio;
-    canvas.style.width = heroSection.clientWidth + 'px';
-    canvas.style.height = heroSection.clientHeight + 'px';
-    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+  function hexToRgb(hex){
+    const m = /^#?([0-9a-f]{6})$/i.exec((hex || '').trim());
+    if (!m) return { r: 230, g: 171, b: 77 };
+    const int = parseInt(m[1], 16);
+    return { r: (int >> 16) & 255, g: (int >> 8) & 255, b: int & 255 };
   }
-  function makeParticles(){
-    const w = heroSection.clientWidth, h = heroSection.clientHeight;
-    const count = Math.min(70, Math.floor(w / 16));
-    particles = Array.from({ length: count }, () => ({
+
+  function resizeBg(){
+    bgCanvas.width = window.innerWidth * devicePixelRatio;
+    bgCanvas.height = window.innerHeight * devicePixelRatio;
+    bgCanvas.style.width = window.innerWidth + 'px';
+    bgCanvas.style.height = window.innerHeight + 'px';
+    bctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+  }
+  function makeMotes(){
+    const w = window.innerWidth, h = window.innerHeight;
+    const count = Math.min(28, Math.floor(w / 55));
+    motes = Array.from({ length: count }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
-      r: Math.random() * 2.6 + 1.4,
-      speedY: Math.random() * 0.35 + 0.12,
-      drift: Math.random() * 0.4 - 0.2,
-      baseAlpha: Math.random() * 0.45 + 0.35,
+      r: Math.random() * 1.6 + 0.9,
+      speedY: Math.random() * 0.14 + 0.05,
+      drift: Math.random() * 0.18 - 0.09,
+      baseAlpha: Math.random() * 0.16 + 0.08,
       twinkle: Math.random() * Math.PI * 2
     }));
   }
-  function tick(){
-    const w = heroSection.clientWidth, h = heroSection.clientHeight;
-    ctx.clearRect(0, 0, w, h);
-    particles.forEach(p => {
+  function tickBg(){
+    const w = window.innerWidth, h = window.innerHeight;
+    const { r, g, b } = hexToRgb(getComputedStyle(root).getPropertyValue('--gold'));
+    bctx.clearRect(0, 0, w, h);
+    motes.forEach(p => {
       p.y -= p.speedY;
       p.x += p.drift;
-      p.twinkle += 0.02;
-      if (p.y < -10) { p.y = h + 10; p.x = Math.random() * w; }
-      const alpha = p.baseAlpha * (0.65 + 0.35 * Math.sin(p.twinkle));
-      const glow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
-      glow.addColorStop(0, `rgba(230,171,77,${alpha})`);
-      glow.addColorStop(1, 'rgba(230,171,77,0)');
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2);
-      ctx.fillStyle = glow;
-      ctx.fill();
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(250,224,170,${Math.min(alpha + 0.25, 1)})`;
-      ctx.fill();
+      p.twinkle += 0.012;
+      if (p.y < -8) { p.y = h + 8; p.x = Math.random() * w; }
+      const alpha = p.baseAlpha * (0.6 + 0.4 * Math.sin(p.twinkle));
+      bctx.beginPath();
+      bctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      bctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+      bctx.fill();
     });
-    requestAnimationFrame(tick);
+    requestAnimationFrame(tickBg);
   }
-  resize();
-  makeParticles();
-  tick();
-  window.addEventListener('resize', () => { resize(); makeParticles(); });
+  resizeBg();
+  makeMotes();
+  tickBg();
+  window.addEventListener('resize', () => { resizeBg(); makeMotes(); });
 }

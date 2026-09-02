@@ -8,9 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20260902-5">
+<link rel="stylesheet" href="style.css?v=20260902-6">
 </head>
 <body>
+<canvas id="bgCanvas" aria-hidden="true"></canvas>
 
 <header>
   <nav>
@@ -51,7 +52,6 @@
 <main>
   <!-- ============ HERO ============ -->
   <section class="hero">
-    <canvas id="heroCanvas"></canvas>
     <div class="wrap hero-inner">
       <div class="hero-badges">
         <span class="float-chip">&lt;html&gt;</span>
@@ -164,7 +164,7 @@
       <p style="color:var(--dim); max-width:64ch; margin-bottom:28px; font-size:0.95rem;">Estas plantillas son ejemplos de estilo para que veas cómo trabajo y me digas qué línea te gusta más. Tu sitio final no sale de acá tal cual: se escribe a medida de tu negocio, tomando como referencia lo que elijas.</p>
       <div class="filter-row" id="filterRow"></div>
       <div class="projects-grid" id="projectsGrid"></div>
-      <p class="projects-note">Los datos de cada proyecto viven en una sola lista al principio de <code>script.js</code> (buscá <code>const projects</code>) — se agrega ahí y la tarjeta se genera sola, sin tocar el HTML.</p>
+      <button class="agenda-more" id="projectsMore" type="button">Ver más</button>
     </div>
   </section>
 
@@ -337,7 +337,7 @@
     </div>
   </section>
 
-  <!-- ============ BITÁCORA ============ -->
+  <!-- ============ BITÁCORA (dada de baja temporalmente a pedido — el contenido queda acá abajo comentado para reactivarla sacando este comentario) ============
   <section id="bitacora">
     <div class="wrap">
       <div class="section-head reveal">
@@ -355,6 +355,7 @@
       </div>
     </div>
   </section>
+  -->
 
   <!-- ============ CONTACTO ============ -->
   <section id="contacto">
@@ -378,7 +379,7 @@
   </div>
 </footer>
 
-<script src="script.js?v=20260902-5"></script>
+<script src="script.js?v=20260902-6"></script>
 
 </body>
 </html>
