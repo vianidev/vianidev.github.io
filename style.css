@@ -401,6 +401,20 @@
   .demo-screen p{ color: var(--dim); max-width:44ch; margin-bottom:22px; }
   .demo-screen .d-btn{ font-family:'Space Mono', monospace; font-size:0.8rem; background: var(--gold); color:#1a1410; padding:11px 24px; border-radius:100px; font-weight:700; }
 
+  /* ---------- LOGIN ANIMADO CON EFECTO GLOW ---------- */
+  .glow-login{ display:flex; flex-direction:column; align-items:center; gap:14px; width:100%; max-width:280px; }
+  .glow-input{
+    width:100%; padding:13px 16px; border-radius:10px; border:1px solid var(--border);
+    background: var(--surface-2); color: var(--cream); font-family:'Manrope', sans-serif; font-size:0.9rem;
+    outline:none; transition: box-shadow .35s ease, border-color .35s ease;
+  }
+  .glow-input:focus{
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(230,171,77,0.18), 0 0 22px rgba(230,171,77,0.35);
+  }
+  .glow-login .d-btn{ cursor:pointer; margin-top:4px; transition: box-shadow .3s ease, transform .2s ease; }
+  .glow-login .d-btn:hover{ box-shadow: 0 0 24px rgba(230,171,77,0.5); transform: translateY(-1px); }
+
   /* ---------- BITÁCORA / GIT LOG ---------- */
   .gitlog{ background: var(--bg-2); border:1px solid var(--border); border-radius: var(--radius); padding: 8px 0; font-family:'Space Mono', monospace; }
   .log-entry{ display:grid; grid-template-columns: 100px 1fr auto; gap: 18px; padding: 15px 24px; align-items:baseline; border-bottom: 1px dashed var(--border); }
