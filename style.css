@@ -316,6 +316,16 @@
   .palette-dot:hover{ transform: scale(1.18); }
   .palette-dot.active{ border-color: var(--cream); }
 
+  .live-color-picker{
+    width:18px; height:18px; border-radius:50%; border: 2px solid var(--border); padding:0; margin-left:2px;
+    cursor:pointer; background:none; -webkit-appearance:none; appearance:none; flex-shrink:0;
+    transition: transform .2s ease, border-color .2s ease;
+  }
+  .live-color-picker:hover{ transform: scale(1.18); border-color: var(--cream); }
+  .live-color-picker::-webkit-color-swatch-wrapper{ padding:0; border-radius:50%; }
+  .live-color-picker::-webkit-color-swatch{ border:none; border-radius:50%; }
+  .live-color-picker::-moz-color-swatch{ border:none; border-radius:50%; }
+
   .theme-toggle{
     position: relative; width:38px; height:38px; border-radius:50%;
     border:1px solid var(--border); background: var(--surface); cursor:pointer;

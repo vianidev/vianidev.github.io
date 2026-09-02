@@ -168,6 +168,12 @@ paletteDots.forEach(dot => {
   });
 });
 
+// ---------- SELECTOR DE COLOR EN VIVO ----------
+document.getElementById('liveColorPicker').addEventListener('input', (e) => {
+  root.style.setProperty('--gold', e.target.value);
+  root.style.setProperty('--gold-deep', e.target.value);
+});
+
 // ---------- VOLVER ARRIBA ----------
 const toTop = document.getElementById('toTop');
 window.addEventListener('scroll', () => {
