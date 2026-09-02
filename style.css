@@ -415,35 +415,33 @@
   .glow-login .d-btn{ cursor:pointer; margin-top:4px; transition: box-shadow .3s ease, transform .2s ease; }
   .glow-login .d-btn:hover{ box-shadow: 0 0 24px rgba(230,171,77,0.5); transform: translateY(-1px); }
 
-  /* ---------- BITÁCORA / GIT LOG ---------- */
-  .gitlog{ background: var(--bg-2); border:1px solid var(--border); border-radius: var(--radius); padding: 8px 0; font-family:'Space Mono', monospace; }
-  .log-entry{ display:grid; grid-template-columns: 1fr auto; gap: 18px; padding: 15px 24px; align-items:baseline; border-bottom: 1px dashed var(--border); }
-  .log-entry:last-child{ border-bottom:none; }
-  .log-msg{ color: var(--dim); font-size:0.88rem; }
-  .log-time{ color: var(--faint); font-size:0.76rem; white-space:nowrap; }
+  /* ---------- BITÁCORA / LÍNEA DE COMMITS ---------- */
+  .gitlog-rail{
+    position:relative; margin-left:4px; padding-left:26px; border-left:1px solid var(--border);
+    display:flex; flex-direction:column; gap:22px;
+  }
+  .gitlog-item{ position:relative; display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .gitlog-item::before{
+    content:""; position:absolute; left:-31px; top:5px; width:9px; height:9px; border-radius:50%;
+    background: var(--gold); box-shadow: 0 0 0 3px var(--bg);
+  }
+  .gl-msg{ color: var(--cream); font-size:0.94rem; }
+  .gl-time{ color: var(--faint); font-size:0.74rem; font-family:'Space Mono', monospace; white-space:nowrap; }
 
   /* ---------- AGENDA DE CONTENIDO ---------- */
-  .agenda-list{ background: var(--bg-2); border:1px solid var(--border); border-radius: var(--radius); padding: 8px 0; }
-  .agenda-item{
-    display:grid; grid-template-columns: 70px 1fr auto; gap: 18px; padding: 15px 24px;
-    align-items:center; border-bottom: 1px dashed var(--border);
+  .agenda-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap:16px; }
+  .agenda-card{
+    background: var(--surface); border:1px solid var(--border); border-radius: var(--radius);
+    padding: 22px 20px; display:flex; flex-direction:column; gap:14px;
+    transition: border-color .2s ease, transform .2s ease;
   }
-  .agenda-item:last-child{ border-bottom:none; }
-  .agenda-date{
-    font-family:'Space Mono', monospace; font-size:0.78rem; letter-spacing:0.03em; color: var(--gold);
-    font-weight:700;
-  }
-  .agenda-title{ color: var(--cream); font-size:0.92rem; }
-  .agenda-tag{
-    font-family:'Space Mono', monospace; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.05em;
-    color: var(--sage); background: var(--chip-bg); border:1px solid var(--border); border-radius:100px;
-    padding: 4px 12px; white-space:nowrap; justify-self:end;
-  }
-  @media (max-width:640px){
-    .agenda-item{ grid-template-columns: 1fr; gap:6px; padding:14px 18px; }
-    .agenda-tag{ justify-self:start; }
-  }
-  @media (max-width:640px){
-    .log-entry{ grid-template-columns: 1fr; gap:4px; padding:14px 18px; }
-    .log-time{ order:3; }
+  .agenda-card:hover{ border-color: var(--gold); transform: translateY(-3px); }
+  .ac-date{ display:flex; align-items:baseline; gap:7px; }
+  .ac-day{ font-family:'DM Serif Display', serif; font-size:1.9rem; color: var(--gold); line-height:1; }
+  .ac-mon{ font-family:'Space Mono', monospace; font-size:0.72rem; letter-spacing:0.05em; text-transform:uppercase; color: var(--faint); }
+  .ac-title{ color: var(--cream); font-size:0.9rem; line-height:1.45; flex:1; }
+  .ac-tag{
+    align-self:flex-start; font-family:'Space Mono', monospace; font-size:0.68rem; text-transform:uppercase;
+    letter-spacing:0.05em; color: var(--sage); background: var(--chip-bg); border:1px solid var(--border);
+    border-radius:100px; padding: 4px 12px;
   }
