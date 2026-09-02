@@ -221,6 +221,14 @@ window.addEventListener('scroll', () => {
 });
 toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }));
 
+// ---------- CTA FLOTANTE (mail + Instagram, visible durante el scroll) ----------
+const floatingCta = document.getElementById('floatingCta');
+if (floatingCta) {
+  window.addEventListener('scroll', () => {
+    floatingCta.classList.toggle('show', window.scrollY > 400);
+  });
+}
+
 // ---------- AGENDA DE CONTENIDO: filtro + paginado ----------
 (function initAgenda(){
   const grid = document.getElementById('agendaGrid');
