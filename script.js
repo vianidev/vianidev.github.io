@@ -181,6 +181,58 @@ window.addEventListener('scroll', () => {
 });
 toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }));
 
+// ---------- AGENDA DE CONTENIDO: filtro + paginado ----------
+(function initAgenda(){
+  const grid = document.getElementById('agendaGrid');
+  const filterRow = document.getElementById('agendaFilterRow');
+  const moreBtn = document.getElementById('agendaMore');
+  if (!grid || !filterRow || !moreBtn) return;
+
+  const cards = Array.from(grid.querySelectorAll('.agenda-card'));
+  const today = new Date(); today.setHours(0,0,0,0);
+  cards.forEach(card => {
+    const d = new Date(card.dataset.date + 'T00:00:00');
+    card.dataset.status = d < today ? 'publicado' : 'proximo';
+  });
+
+  const filters = [
+    { key: 'proximo', label: 'Próximos' },
+    { key: 'publicado', label: 'Publicados' },
+    { key: 'all', label: 'Todos' },
+  ];
+  filterRow.innerHTML = filters.map((f, i) =>
+    `<button class="filter-btn${i === 0 ? ' active' : ''}" data-filter="${f.key}">${f.label}</button>`
+  ).join('');
+
+  const PAGE_SIZE = 6;
+  let visibleCount = PAGE_SIZE;
+  let activeFilter = 'proximo';
+
+  function applyView(){
+    const matching = cards.filter(c => activeFilter === 'all' || c.dataset.status === activeFilter);
+    cards.forEach(c => c.classList.add('hide'));
+    matching.slice(0, visibleCount).forEach(c => c.classList.remove('hide'));
+    moreBtn.style.display = matching.length > visibleCount ? 'inline-flex' : 'none';
+  }
+
+  filterRow.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterRow.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      visibleCount = PAGE_SIZE;
+      applyView();
+    });
+  });
+
+  moreBtn.addEventListener('click', () => {
+    visibleCount += PAGE_SIZE;
+    applyView();
+  });
+
+  applyView();
+})();
+
 // ---------- NAVEGADOR INTERACTIVO ----------
 const demoTabs = document.querySelectorAll('.demo-tab');
 const demoScreens = document.querySelectorAll('.demo-screen');

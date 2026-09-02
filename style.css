@@ -443,5 +443,13 @@
   .ac-tag{
     align-self:flex-start; font-family:'Space Mono', monospace; font-size:0.68rem; text-transform:uppercase;
     letter-spacing:0.05em; color: var(--sage); background: var(--chip-bg); border:1px solid var(--border);
-    border-radius:100px; padding: 4px 12px;
+    border-radius:100px; padding: 4px 12px; text-decoration:none; transition: border-color .2s ease, color .2s ease;
   }
+  .ac-tag:hover{ border-color: var(--sage); color: var(--cream); }
+  .agenda-card.hide{ display:none; }
+  .agenda-more{
+    display:inline-flex; margin-top:22px; font-family:'Space Mono', monospace; font-size:0.8rem;
+    background:none; border:1px solid var(--border); color: var(--dim); padding:11px 26px;
+    border-radius:100px; cursor:pointer; transition: border-color .2s ease, color .2s ease;
+  }
+  .agenda-more:hover{ border-color: var(--gold); color: var(--cream); }
