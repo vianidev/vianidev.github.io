@@ -417,11 +417,32 @@
 
   /* ---------- BITÁCORA / GIT LOG ---------- */
   .gitlog{ background: var(--bg-2); border:1px solid var(--border); border-radius: var(--radius); padding: 8px 0; font-family:'Space Mono', monospace; }
-  .log-entry{ display:grid; grid-template-columns: 100px 1fr auto; gap: 18px; padding: 15px 24px; align-items:baseline; border-bottom: 1px dashed var(--border); }
+  .log-entry{ display:grid; grid-template-columns: 1fr auto; gap: 18px; padding: 15px 24px; align-items:baseline; border-bottom: 1px dashed var(--border); }
   .log-entry:last-child{ border-bottom:none; }
-  .log-hash{ color: var(--gold); font-size:0.82rem; }
   .log-msg{ color: var(--dim); font-size:0.88rem; }
   .log-time{ color: var(--faint); font-size:0.76rem; white-space:nowrap; }
+
+  /* ---------- AGENDA DE CONTENIDO ---------- */
+  .agenda-list{ background: var(--bg-2); border:1px solid var(--border); border-radius: var(--radius); padding: 8px 0; }
+  .agenda-item{
+    display:grid; grid-template-columns: 70px 1fr auto; gap: 18px; padding: 15px 24px;
+    align-items:center; border-bottom: 1px dashed var(--border);
+  }
+  .agenda-item:last-child{ border-bottom:none; }
+  .agenda-date{
+    font-family:'Space Mono', monospace; font-size:0.78rem; letter-spacing:0.03em; color: var(--gold);
+    font-weight:700;
+  }
+  .agenda-title{ color: var(--cream); font-size:0.92rem; }
+  .agenda-tag{
+    font-family:'Space Mono', monospace; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.05em;
+    color: var(--sage); background: var(--chip-bg); border:1px solid var(--border); border-radius:100px;
+    padding: 4px 12px; white-space:nowrap; justify-self:end;
+  }
+  @media (max-width:640px){
+    .agenda-item{ grid-template-columns: 1fr; gap:6px; padding:14px 18px; }
+    .agenda-tag{ justify-self:start; }
+  }
   @media (max-width:640px){
     .log-entry{ grid-template-columns: 1fr; gap:4px; padding:14px 18px; }
     .log-time{ order:3; }
