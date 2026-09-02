@@ -20,31 +20,33 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 // OJO: las páginas viven dentro de /Paginas-Web/, por eso va incluido acá.
 const REPO_BASE = 'https://vianidev.github.io/plantillas-web/Paginas-Web/';
 
+const THUMB_BASE = 'assets/img/proyectos/';
+
 const projects = [
-  { category:'ropa', label:'Ropa', status:'done', title:'Ropa — plantilla 01', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-ropa-01/' },
-  { category:'ropa', label:'Ropa', status:'done', title:'Ropa — plantilla 02', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-ropa-02/' },
-  { category:'ropa', label:'Ropa', status:'done', title:'Ropa — plantilla 03', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-ropa-03/' },
-  { category:'ropa', label:'Ropa', status:'done', title:'Ropa — plantilla 04', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-ropa-04/' },
+  { category:'ropa', label:'Ropa', status:'done', title:'Ropa — plantilla 01', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-ropa-01/', thumb: THUMB_BASE + 'ropa-01.webp' },
+  { category:'ropa', label:'Ropa', status:'done', title:'Ropa — plantilla 02', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-ropa-02/', thumb: THUMB_BASE + 'ropa-02.webp' },
+  { category:'ropa', label:'Ropa', status:'done', title:'Ropa — plantilla 03', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-ropa-03/', thumb: THUMB_BASE + 'ropa-03.webp' },
+  { category:'ropa', label:'Ropa', status:'done', title:'Ropa — plantilla 04', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-ropa-04/', thumb: THUMB_BASE + 'ropa-04.webp' },
 
-  { category:'camperas', label:'Camperas', status:'done', title:'Camperas — plantilla 01', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-camperas-01/' },
-  { category:'camperas', label:'Camperas', status:'done', title:'Camperas — plantilla 02', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-camperas-02/' },
-  { category:'camperas', label:'Camperas', status:'done', title:'Camperas — plantilla 03', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-camperas-03/' },
-  { category:'camperas', label:'Camperas', status:'done', title:'Camperas — plantilla 04', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-camperas-04/' },
+  { category:'camperas', label:'Camperas', status:'done', title:'Camperas — plantilla 01', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-camperas-01/', thumb: THUMB_BASE + 'camperas-01.webp' },
+  { category:'camperas', label:'Camperas', status:'done', title:'Camperas — plantilla 02', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-camperas-02/', thumb: THUMB_BASE + 'camperas-02.webp' },
+  { category:'camperas', label:'Camperas', status:'done', title:'Camperas — plantilla 03', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-camperas-03/', thumb: THUMB_BASE + 'camperas-03.webp' },
+  { category:'camperas', label:'Camperas', status:'done', title:'Camperas — plantilla 04', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-camperas-04/', thumb: THUMB_BASE + 'camperas-04.webp' },
 
-  { category:'zapatillas', label:'Zapatillas', status:'done', title:'Zapatillas — plantilla 01', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-zapatillas-01/' },
-  { category:'zapatillas', label:'Zapatillas', status:'done', title:'Zapatillas — plantilla 02', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-zapatillas-02/' },
-  { category:'zapatillas', label:'Zapatillas', status:'done', title:'Zapatillas — plantilla 03', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-zapatillas-03/' },
-  { category:'zapatillas', label:'Zapatillas', status:'done', title:'Zapatillas — plantilla 04', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-zapatillas-04/' },
+  { category:'zapatillas', label:'Zapatillas', status:'done', title:'Zapatillas — plantilla 01', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-zapatillas-01/', thumb: THUMB_BASE + 'zapatillas-01.webp' },
+  { category:'zapatillas', label:'Zapatillas', status:'done', title:'Zapatillas — plantilla 02', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-zapatillas-02/', thumb: THUMB_BASE + 'zapatillas-02.webp' },
+  { category:'zapatillas', label:'Zapatillas', status:'done', title:'Zapatillas — plantilla 03', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-zapatillas-03/', thumb: THUMB_BASE + 'zapatillas-03.webp' },
+  { category:'zapatillas', label:'Zapatillas', status:'done', title:'Zapatillas — plantilla 04', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-zapatillas-04/', thumb: THUMB_BASE + 'zapatillas-04.webp' },
 
-  { category:'accesorios', label:'Accesorios', status:'done', title:'Accesorios — plantilla 01', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-accesorios-01/' },
-  { category:'accesorios', label:'Accesorios', status:'done', title:'Accesorios — plantilla 02', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-accesorios-02/' },
-  { category:'accesorios', label:'Accesorios', status:'done', title:'Accesorios — plantilla 03', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-accesorios-03/' },
-  { category:'accesorios', label:'Accesorios', status:'done', title:'Accesorios — plantilla 04', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-accesorios-04/' },
+  { category:'accesorios', label:'Accesorios', status:'done', title:'Accesorios — plantilla 01', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-accesorios-01/', thumb: THUMB_BASE + 'accesorios-01.webp' },
+  { category:'accesorios', label:'Accesorios', status:'done', title:'Accesorios — plantilla 02', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-accesorios-02/', thumb: THUMB_BASE + 'accesorios-02.webp' },
+  { category:'accesorios', label:'Accesorios', status:'done', title:'Accesorios — plantilla 03', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-accesorios-03/', thumb: THUMB_BASE + 'accesorios-03.webp' },
+  { category:'accesorios', label:'Accesorios', status:'done', title:'Accesorios — plantilla 04', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-accesorios-04/', thumb: THUMB_BASE + 'accesorios-04.webp' },
 
-  { category:'deportiva', label:'Indumentaria deportiva', status:'done', title:'Deportiva — plantilla 01', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-deportiva-01/' },
-  { category:'deportiva', label:'Indumentaria deportiva', status:'done', title:'Deportiva — plantilla 02', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-deportiva-02/' },
-  { category:'deportiva', label:'Indumentaria deportiva', status:'done', title:'Deportiva — plantilla 03', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-deportiva-03/' },
-  { category:'deportiva', label:'Indumentaria deportiva', status:'done', title:'Deportiva — plantilla 04', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-deportiva-04/' }
+  { category:'deportiva', label:'Indumentaria deportiva', status:'done', title:'Deportiva — plantilla 01', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-deportiva-01/', thumb: THUMB_BASE + 'deportiva-01.webp' },
+  { category:'deportiva', label:'Indumentaria deportiva', status:'done', title:'Deportiva — plantilla 02', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-deportiva-02/', thumb: THUMB_BASE + 'deportiva-02.webp' },
+  { category:'deportiva', label:'Indumentaria deportiva', status:'done', title:'Deportiva — plantilla 03', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-deportiva-03/', thumb: THUMB_BASE + 'deportiva-03.webp' },
+  { category:'deportiva', label:'Indumentaria deportiva', status:'done', title:'Deportiva — plantilla 04', desc:'Editá este título y descripción con lo que realmente hace esta plantilla.', link: REPO_BASE + 'tienda-deportiva-04/', thumb: THUMB_BASE + 'deportiva-04.webp' }
 ];
 
 function renderProjectCard(p){
@@ -53,17 +55,20 @@ function renderProjectCard(p){
   const linkHtml = p.status === 'done'
     ? `<a href="${p.link}" class="project-link" target="_blank" rel="noopener noreferrer"><span class="link-text">Explorar plantilla</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>`
     : `<span class="project-link pending-label">Próximamente</span>`;
-  return `
-    <div class="project-card${pendingClass}" data-cat="${p.category}">
-      <div class="project-thumb">
-        <div class="mini-browser">
+  const thumbHtml = p.thumb
+    ? `<img src="${p.thumb}" alt="Captura de la plantilla ${p.title}" loading="lazy" width="900" height="600">`
+    : `<div class="mini-browser">
           <div class="mini-bar"><span class="mini-dot"></span><span class="mini-dot"></span><span class="mini-dot"></span></div>
           <div class="mini-body">
             <div class="mini-line" style="width:60%"></div>
             <div class="mini-line" style="width:85%"></div>
             <div class="mini-line" style="width:40%; background:var(--gold);"></div>
           </div>
-        </div>
+        </div>`;
+  return `
+    <div class="project-card${pendingClass}" data-cat="${p.category}">
+      <div class="project-thumb">
+        ${thumbHtml}
       </div>
       <div class="project-body">
         <span class="project-tag">${tagWord} · ${p.label}</span>
