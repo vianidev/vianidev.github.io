@@ -191,8 +191,12 @@ toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduce
   const cards = Array.from(grid.querySelectorAll('.agenda-card'));
   const today = new Date(); today.setHours(0,0,0,0);
   cards.forEach(card => {
-    const d = new Date(card.dataset.date + 'T00:00:00');
-    card.dataset.status = d < today ? 'publicado' : 'proximo';
+    // Si la tarjeta ya trae data-status en el HTML (confirmado a mano tras revisar Notion),
+    // se respeta ese valor. Si no, se calcula solo comparando la fecha con hoy.
+    if (!card.dataset.status) {
+      const d = new Date(card.dataset.date + 'T00:00:00');
+      card.dataset.status = d < today ? 'publicado' : 'proximo';
+    }
   });
 
   const filters = [
