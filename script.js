@@ -177,12 +177,19 @@ function setThemeAttr(theme){
 // donde se hizo clic, a modo de confirmación visual, sin tapar la pantalla.
 root.setAttribute('data-palette', 'amber');
 const paletteDots = document.querySelectorAll('.palette-dot');
+const liveColorPicker = document.getElementById('liveColorPicker');
 paletteDots.forEach(dot => {
   dot.addEventListener('click', () => {
     if (dot.classList.contains('active')) return;
     const palette = dot.dataset.palette;
+    // El selector RGB en vivo pisa --gold con un estilo inline en <html>, que tiene
+    // más especificidad que html[data-palette="..."]. Si no se limpia acá, las
+    // paletas prefijadas dejan de reaccionar después de haber usado el selector libre.
+    root.style.removeProperty('--gold');
+    root.style.removeProperty('--gold-deep');
     root.setAttribute('data-palette', palette);
     paletteDots.forEach(d => d.classList.toggle('active', d === dot));
+    if (liveColorPicker) liveColorPicker.value = dot.dataset.color;
 
     if (!reduceMotion) {
       const ripple = document.createElement('span');
@@ -198,10 +205,11 @@ paletteDots.forEach(dot => {
 // Mientras se arrastra el selector nativo, se apaga la transición de color un instante
 // para que el cambio siga al cursor sin retraso; al soltar, vuelve a animarse suave.
 let liveColorTimeout;
-document.getElementById('liveColorPicker').addEventListener('input', (e) => {
+liveColorPicker.addEventListener('input', (e) => {
   root.classList.add('no-color-transition');
   root.style.setProperty('--gold', e.target.value);
   root.style.setProperty('--gold-deep', e.target.value);
+  paletteDots.forEach(d => d.classList.remove('active')); // ninguna paleta fija representa ya el color custom
   clearTimeout(liveColorTimeout);
   liveColorTimeout = setTimeout(() => root.classList.remove('no-color-transition'), 200);
 });
@@ -311,21 +319,42 @@ if (bgCanvas && !reduceMotion) {
   }
   function makeMotes(){
     const w = window.innerWidth, h = window.innerHeight;
-    const count = Math.min(28, Math.floor(w / 55));
+    const count = Math.min(46, Math.floor(w / 34));
     motes = Array.from({ length: count }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
-      r: Math.random() * 1.6 + 0.9,
-      speedY: Math.random() * 0.14 + 0.05,
-      drift: Math.random() * 0.18 - 0.09,
-      baseAlpha: Math.random() * 0.16 + 0.08,
+      r: Math.random() * 1.8 + 1.1,
+      speedY: Math.random() * 0.16 + 0.05,
+      drift: Math.random() * 0.2 - 0.1,
+      baseAlpha: Math.random() * 0.26 + 0.14,
       twinkle: Math.random() * Math.PI * 2
     }));
   }
+  const LINK_DIST = 130;
   function tickBg(){
     const w = window.innerWidth, h = window.innerHeight;
     const { r, g, b } = hexToRgb(getComputedStyle(root).getPropertyValue('--gold'));
     bctx.clearRect(0, 0, w, h);
+
+    // líneas finas entre motas cercanas: da sensación de red/constelación
+    // en vez de dejar el fondo vacío, sin sumar peso visual
+    for (let i = 0; i < motes.length; i++){
+      for (let j = i + 1; j < motes.length; j++){
+        const a = motes[i], m = motes[j];
+        const dx = a.x - m.x, dy = a.y - m.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < LINK_DIST){
+          const lineAlpha = (1 - dist / LINK_DIST) * 0.16;
+          bctx.beginPath();
+          bctx.moveTo(a.x, a.y);
+          bctx.lineTo(m.x, m.y);
+          bctx.strokeStyle = `rgba(${r},${g},${b},${lineAlpha})`;
+          bctx.lineWidth = 1;
+          bctx.stroke();
+        }
+      }
+    }
+
     motes.forEach(p => {
       p.y -= p.speedY;
       p.x += p.drift;
