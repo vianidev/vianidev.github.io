@@ -1,20 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <!-- fondo -->
-  <rect width="512" height="512" rx="108" fill="#17110d"/>
-  <rect x="34" y="34" width="444" height="444" rx="82" fill="#1e1610" stroke="#3d2f21" stroke-width="4"/>
-
   <!-- vapor, se curva y se convierte en el glifo de código -->
   <path d="M205 290 C 183 262, 222 236, 202 205"
-        fill="none" stroke="#f6ecd9" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+        fill="none" stroke="#c68a34" stroke-width="8" stroke-linecap="round" opacity="0.55"/>
   <path d="M312 290 C 334 262, 295 236, 315 205"
-        fill="none" stroke="#f6ecd9" stroke-width="8" stroke-linecap="round" opacity="0.38"/>
+        fill="none" stroke="#c68a34" stroke-width="8" stroke-linecap="round" opacity="0.4"/>
 
   <!-- glifo </> : la forma dominante, se lee incluso a 16px -->
   <g stroke="#e6ab4d" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" fill="none">
     <polyline points="200,120 138,182 200,244"/>
     <polyline points="312,120 374,182 312,244"/>
   </g>
-  <line x1="283" y1="112" x2="229" y2="252" stroke="#f6ecd9" stroke-width="28" stroke-linecap="round"/>
+  <line x1="283" y1="112" x2="229" y2="252" stroke="#c68a34" stroke-width="28" stroke-linecap="round"/>
 
   <!-- taza de café, compacta -->
   <path d="M182 296 h148 v54 a74 74 0 0 1 -148 0 z" fill="#e6ab4d"/>
@@ -22,5 +18,5 @@
   <path d="M330 312 a34 28 0 0 1 0 56" fill="none" stroke="#e6ab4d" stroke-width="20" stroke-linecap="round"/>
   <ellipse cx="256" cy="296" rx="74" ry="13" fill="#c68a34"/>
   <ellipse cx="256" cy="294" rx="60" ry="9" fill="#3a2410"/>
-  <ellipse cx="256" cy="404" rx="102" ry="15" fill="#1e1610" stroke="#3d2f21" stroke-width="5"/>
+  <ellipse cx="256" cy="404" rx="102" ry="15" fill="none" stroke="#c68a34" stroke-width="6" opacity="0.55"/>
 </svg>
