@@ -1,22 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <!-- vapor, se curva y se convierte en el glifo de código -->
-  <path d="M205 290 C 183 262, 222 236, 202 205"
-        fill="none" stroke="#c68a34" stroke-width="8" stroke-linecap="round" opacity="0.55"/>
-  <path d="M312 290 C 334 262, 295 236, 315 205"
-        fill="none" stroke="#c68a34" stroke-width="8" stroke-linecap="round" opacity="0.4"/>
+  <!-- vapor -->
+  <path d="M196 268 C 172 234, 214 210, 190 172 C 170 140, 202 118, 186 84"
+        fill="none" stroke="#c68a34" stroke-width="14" stroke-linecap="round" opacity="0.85"/>
+  <path d="M256 268 C 232 230, 274 204, 250 164 C 230 130, 262 106, 246 70"
+        fill="none" stroke="#e6ab4d" stroke-width="16" stroke-linecap="round"/>
+  <path d="M316 268 C 340 234, 298 210, 322 172 C 342 140, 310 118, 326 84"
+        fill="none" stroke="#c68a34" stroke-width="14" stroke-linecap="round" opacity="0.7"/>
 
-  <!-- glifo </> : la forma dominante, se lee incluso a 16px -->
-  <g stroke="#e6ab4d" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" fill="none">
-    <polyline points="200,120 138,182 200,244"/>
-    <polyline points="312,120 374,182 312,244"/>
-  </g>
-  <line x1="283" y1="112" x2="229" y2="252" stroke="#c68a34" stroke-width="28" stroke-linecap="round"/>
-
-  <!-- taza de café, compacta -->
-  <path d="M182 296 h148 v54 a74 74 0 0 1 -148 0 z" fill="#e6ab4d"/>
-  <path d="M182 296 h148 v54 a74 74 0 0 1 -148 0 z" fill="none" stroke="#c68a34" stroke-width="6"/>
-  <path d="M330 312 a34 28 0 0 1 0 56" fill="none" stroke="#e6ab4d" stroke-width="20" stroke-linecap="round"/>
-  <ellipse cx="256" cy="296" rx="74" ry="13" fill="#c68a34"/>
-  <ellipse cx="256" cy="294" rx="60" ry="9" fill="#3a2410"/>
-  <ellipse cx="256" cy="404" rx="102" ry="15" fill="none" stroke="#c68a34" stroke-width="6" opacity="0.55"/>
+  <!-- taza de café -->
+  <path d="M148 280 h216 v92 a108 108 0 0 1 -216 0 z" fill="#e6ab4d"/>
+  <path d="M148 280 h216 v92 a108 108 0 0 1 -216 0 z" fill="none" stroke="#c68a34" stroke-width="7"/>
+  <path d="M364 306 a48 42 0 0 1 0 82" fill="none" stroke="#e6ab4d" stroke-width="26" stroke-linecap="round"/>
+  <ellipse cx="256" cy="280" rx="108" ry="18" fill="#c68a34"/>
+  <ellipse cx="256" cy="277" rx="88" ry="13" fill="#3a2410"/>
+  <ellipse cx="256" cy="440" rx="140" ry="19" fill="none" stroke="#c68a34" stroke-width="7" opacity="0.55"/>
 </svg>
